@@ -1,0 +1,17 @@
+{
+    "name": "allan/allan-test",
+    "description": "Allan Test",
+    "autoload": {
+        "psr-4": {
+            "AllanTest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "allan casilum"
+        }
+    ],
+    "require": {
+        "fakerphp/faker": "^1.23"
+    }
+}
