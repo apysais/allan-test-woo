@@ -5,17 +5,29 @@ use WC_Product;
 use Faker;
 use AllanTest\Single_Instance_Trait;
 
+/**
+ * Create or Update Product.
+ * 
+ * This is use wheter to update or create a product, since the class WC_Product accept product id for update and empty for creation.
+ */
 class WC_Create_Or_Update_Product
 {
     use Single_Instance_Trait;
 
+    /**
+     * Initialize the create or update.
+     * 
+     * @param int $product_id Pass the Woo Product ID, default is null
+     */
     public function init($product_id = null)
     {
         $faker = Faker\Factory::create();
         
+        //if null then create product
         if( is_null($product_id) ) {
             $product = new WC_Product();
         }else{
+            //if not then update
             $product = new WC_Product($product_id);    
         }
 

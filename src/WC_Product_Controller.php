@@ -17,7 +17,7 @@ class WC_Product_Controller
     use Single_Instance_Trait;
 
     /**
-     * Initialize the controller
+     * Initialize the controller.
      */
     public function init()
     {
@@ -26,19 +26,19 @@ class WC_Product_Controller
          */
         if( isset($_GET['allan-test-action']) ) {
 
-            //check if the action is to create
+            //check if the action is to create.
             if( sanitize_text_field($_GET['allan-test-action']) == 'create' ) {
                 return $this->create();
             }
 
-            //check if the action is to bulk create
+            //check if the action is to bulk create.
             if( sanitize_text_field($_GET['allan-test-action']) == 'bulk-create' ) {
                 //get the limit of bulk creation.
                 $bulk_create_limit = isset( $_GET['bulk-create-limit'] ) ? sanitize_text_field( $_GET['bulk-create-limit'] ) : 1;
                 $this->create_bulk($bulk_create_limit);
             }
 
-            //check if the action is update
+            //check if the action is update.
             if( sanitize_text_field($_GET['allan-test-action']) == 'update' ) {
                 //check if the product id is set.
                 $product_id = isset( $_GET['product-id'] ) ? sanitize_text_field( $_GET['product-id'] ) : null;
@@ -48,7 +48,7 @@ class WC_Product_Controller
                 }
             }
 
-            //check if the action is delete
+            //check if the action is delete.
             if( sanitize_text_field($_GET['allan-test-action']) == 'delete' ) {
                 //check if the product id is set.
                 $product_id = isset( $_GET['product-id'] ) ? sanitize_text_field( $_GET['product-id'] ) : null;
@@ -62,12 +62,15 @@ class WC_Product_Controller
             }
 
             /**
-             * Check if the 
+             * Check if the action is getting the list of products.
              */
             if( sanitize_text_field($_GET['allan-test-action']) == 'list' ) {
                 return $this->get_products();
             }
 
+            /**
+             * Get the product by ID.
+             */
             if( sanitize_text_field($_GET['allan-test-action']) == 'get' ) {
                 //check if the product id is set.
                 $product_id = isset( $_GET['product-id'] ) ? sanitize_text_field( $_GET['product-id'] ) : null;
@@ -118,20 +121,36 @@ class WC_Product_Controller
     }
 
     /**
+     * Delete product.
      * 
+     * @param init $product_id This is the Woo Product ID.
+     * @param boolean $force_delete Set to true if you want the product totally deleted, or false to be set as trash. Default false.
+     * @return Object
      */
     private function delete($product_id, $force_delete = false)
     {
         $delete = new WC_Delete_Product;
-        $delete->delete($product_id, $force_delete);
+        return $delete->delete($product_id, $force_delete);
     }
 
+    /**
+     * Get all the woo products.
+     * 
+     * @param array $args, optional, this is the parameter sent to wc_get_products
+     * @return Object
+     */
     private function get_products($args = [])
     {
         $lists = new WC_List_Products;
         return $lists->get_products($args);
     }
 
+    /**
+     * Get Product by ID.
+     * 
+     * @param init $product_id This is the WooCommerce Product ID.
+     * @return Object
+     */
     private function get_product($product_id)
     {
         $get = new WC_Get_Product;

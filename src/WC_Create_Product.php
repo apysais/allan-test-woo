@@ -5,6 +5,12 @@ use WC_Product;
 use Faker;
 use AllanTest\Single_Instance_Trait;
 
+/**
+ * Create Product.
+ * 
+ * Use to Create Product.
+ * 
+ */
 class WC_Create_Product
 {
     use Single_Instance_Trait;

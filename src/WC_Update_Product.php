@@ -5,10 +5,21 @@ use WC_Product;
 use Faker;
 use AllanTest\Single_Instance_Trait;
 
+/**
+ * Use to update product.
+ * Need to pass woo product ID.
+ * 
+ */
 class WC_Update_Product
 {
     use Single_Instance_Trait;
 
+    /**
+     * Update product.
+     * 
+     * @param init $product_id Woo Product ID.
+     * @return object
+     */
     public function update($product_id)
     {
         $faker = Faker\Factory::create();
