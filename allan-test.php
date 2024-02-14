@@ -45,6 +45,8 @@ function run_allan_test() {
             //set the controller
             \AllanTest\WC_Product_Controller::get_instance()->init();
             
+            $obj = \AllanTest\WC_Create_Product_Child::get_instance();
+            print_r( $obj );
         }
     }
 }
